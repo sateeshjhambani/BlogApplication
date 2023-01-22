@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class BlogsRepositoryImpl: BlogsRepository{
 
-    // todo: remove nullable return type
+    // todo: remove nullable return type ?
     override suspend fun getBlogs(): Response<List<Blog>>? {
         return null
     }
