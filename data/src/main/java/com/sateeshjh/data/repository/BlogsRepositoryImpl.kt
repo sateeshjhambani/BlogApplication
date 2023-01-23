@@ -1,13 +1,19 @@
 package com.sateeshjh.data.repository
 
+import com.sateeshjh.data.mappers.toDomain
+import com.sateeshjh.data.network.ApiService
+import com.sateeshjh.data.network.utils.SafeApiRequest
 import com.sateeshjh.domain.model.Blog
 import com.sateeshjh.domain.repository.BlogsRepository
 import retrofit2.Response
+import javax.inject.Inject
 
-class BlogsRepositoryImpl: BlogsRepository{
+class BlogsRepositoryImpl @Inject constructor(private val apiService: ApiService) : BlogsRepository,
+    SafeApiRequest() {
 
-    // todo: remove nullable return type ?
-    override suspend fun getBlogs(): Response<List<Blog>>? {
-        return null
+    override suspend fun getBlogs(): List<Blog> {
+        val response = safeApiRequest { apiService.getBlogs() }
+
+        return response.data?.toDomain() ?: emptyList()
     }
 }

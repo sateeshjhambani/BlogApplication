@@ -5,5 +5,5 @@ import retrofit2.Response
 
 interface BlogsRepository {
 
-    suspend fun getBlogs(): Response<List<Blog>>?
+    suspend fun getBlogs(): List<Blog>
 }
