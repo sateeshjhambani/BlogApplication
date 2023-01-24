@@ -10,6 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.sateeshjh.blogapplication.navigation.NavigationItem
+import com.sateeshjh.blogapplication.screens.home.HomeScreen
 import com.sateeshjh.blogapplication.ui.theme.BlogApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +27,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+
+                    MyApp {
+                        NavHost(
+                            navController = navController,
+                            startDestination = NavigationItem.Home.route
+                        ) {
+                            composable(NavigationItem.Home.route) {
+                                HomeScreen()
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -30,14 +46,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    BlogApplicationTheme {
-        Greeting("Android")
-    }
+fun MyApp(content: @Composable () -> Unit) {
+    content()
 }
