@@ -16,7 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import com.sateeshjh.blogapplication.navigation.NavigationItem
 import com.sateeshjh.blogapplication.screens.home.HomeScreen
 import com.sateeshjh.blogapplication.ui.theme.BlogApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
                             startDestination = NavigationItem.Home.route
                         ) {
                             composable(NavigationItem.Home.route) {
-                                HomeScreen()
+                                HomeScreen(navController = navController)
                             }
                         }
                     }
