@@ -7,4 +7,6 @@ A multi-module application written in Kotlin and Compose. The source for the rem
 
 • Dagger Hilt
 
+• Paging 3
+
 • Coil
